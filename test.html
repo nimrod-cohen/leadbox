@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+    	<meta charset="UTF-8">
+    	<script type='text/javascript'>
+		    var _cmq = _cmq || [];
+		    (function() {
+		        var css = document.createElement('script'); css.async = true; css.type = 'text/javascript'; css.id='tbpscript';
+		        css.src = '//app.adti.me/tracking/CM-PBp8WA3It0-17/tracking.js';
+		        var ref = document.getElementsByTagName('script')[0]; ref.parentNode.insertBefore(css, ref);
+		    })();
+		</script>
+    </head>
+
+    <body>
+
+		<!-- Your site -->
+		<div style="width:400px;height:300px;padding:10px; border:solid 1 pix red; margin:10px;">
+			<div leadbox-form></div>
+		</div>
+        <!-- site end -->
+
+   	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="mailcheck.js"></script>
+	<script type="text/javascript" src="mailgun_validator.js"></script>
+	<script type="text/javascript" src="leadbox.js" charset="UTF-8"></script>
+
+<script type="text/javascript">
+var myFields = [
+ {label : 'Name', name : 'name', value : '', type : 'text', required : true},
+ {label : 'Name', name : 'name', value : '', type : 'text', required : true},
+ {label : 'Name', name : 'name', value : '', type : 'text', required : true},
+ {label : 'Name', name : 'name', value : '', type : 'text', required : true},
+ {label : 'Phone', name : 'phone', value : '', type : 'phone', required : false},
+ {label : 'Email Address', name : 'email', value : '', type : 'email', required : true},
+ {label : 'I agree to receive updates', name : 'i_agree', value : 'on', type : 'checkbox', required : true}
+];
+var options = {
+ submit : {
+  background : '#2ea7ff',
+  text_color : '#ffffff'
+ },
+ input : {
+  background : '#f4f2f2',
+  text_color : '#000000',
+  max_width : '170'
+ },
+ google_fonts : "'Droid Sans', 'Droid Serif'",
+ background : 'rgba(245,93,93,0.24)',
+ thanku_html : 'thank you',
+ layout : 'horizontal',
+ border_radius : 4,
+ show_labels : true,
+ language : 'english',
+ direction : 'ltr',
+ enable_validator : false,
+ enable_suggestions : true,
+ enable_disposables_check : true,
+ mailgun_key : 'pubkey-02fa55f8df9a2992f9db5af9b6391c50',
+ languageOverrides : {save : 'Save'},
+ fields : myFields
+}
+options.callback = function(data) {
+try {
+
+jQuery('div.thanku-pop').css('display','inline-block');
+jQuery('form.lp-container .lp-row').css('visibility','hidden');
+}
+catch(ex)
+{}
+};
+window.lpManager.init(options);
+</script>
+
+</body>
+</html>

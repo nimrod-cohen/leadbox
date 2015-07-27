@@ -1,0 +1,6 @@
+1. add sms verification & if phone exists using nexmo or twilio
+2. make all the code re-enterent, (support multi forms)
+12. put main js files at cloudflare.
+14. connect with auto responder
+16. embed URL
+17. compress with (if available): https://developers.google.com/closure/compiler/docs/api-ref
