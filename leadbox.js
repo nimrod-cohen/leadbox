@@ -197,7 +197,7 @@
 				"form.lp-container { border-radius:"+this.options.border_radius+"px; padding:4px; position:relative; background-color: "+this.options.background+";font-family:"+this.options.google_fonts+", 'Sans Serif';}\n" + 
 				"form.lp-container * { font-family:"+this.options.google_fonts+", 'Sans Serif';}\n" +
 				"div.thanku-pop { width: 100%; height: 100%; position: absolute; top: 0; left: 0; background-color: "+this.options.background+"; display: none; z-index: 100;}\n" +
-				".lp-row { position:relative; margin:8px 10px; padding-bottom:12px; display: "+ (this.options.layout == 'horizontal' ? "inline-" : "") +"block; }\n" +
+				".lp-row { color:"+this.options.color+";position:relative; margin:8px 10px; padding-bottom:12px; display: "+ (this.options.layout == 'horizontal' ? "inline-" : "") +"block; }\n" +
 				".lp-row.multiline { padding-bottom:0; }\n" +
 				"form.horizontal .lp-row { vertical-align:top; margin:0 6px; min-width:140px;}\n" +
 				"form.horizontal button.lp-object { margin-top:"+(this.options.show_labels? "16" : "0")+"px;}\n" +

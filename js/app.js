@@ -4,6 +4,7 @@ $(document).ready(function() {
 
 	//some preparations
 	$('#txt_input_background').colorpicker();
+	$("#txt_text_color").colorpicker();
 	$('#txt_submit_background').colorpicker();
 	$('#txt_input_color').colorpicker();
 	$('#txt_submit_color').colorpicker();
@@ -91,7 +92,7 @@ function enable_auto_refresh()
 	})
 
 	//handle color picker changes
-	$('#txt_submit_color, #txt_input_color, #txt_input_background, #txt_submit_background, #txt_form_background').colorpicker().on('changeColor.colorpicker', function(event){
+	$('#txt_submit_color, #txt_input_color, #txt_text_color, #txt_input_background, #txt_submit_background, #txt_form_background').colorpicker().on('changeColor.colorpicker', function(event){
 		if($("#btn_auto_refresh").hasClass("active"))
 			render();
 	});
@@ -146,6 +147,7 @@ function render()
 			text_color : $("#txt_input_color").val(),
 			max_width : $("#txt_text_width").val(),
 		},
+		color : $("#txt_text_color").val(),
 		google_fonts : $("#txt_fonts").val(),
 		background : $("#txt_form_background").val(),
 		thanku_html : $("#txt_thanku_html").val(),
@@ -201,6 +203,7 @@ function get_code()
 	code += "<br/>&emsp;&emsp;text_color : '"+$("#txt_input_color").val()+"',";
 	code += "<br/>&emsp;&emsp;max_width : '"+$("#txt_text_width").val()+"'";
 	code += "<br/>&emsp;},";
+	code += "<br/>&emsp;color : \"" + $("#txt_text_color").val() + "\",";
 	code += "<br/>&emsp;google_fonts : \"" + $("#txt_fonts").val() + "\",";
 	code += "<br/>&emsp;background : '"+$("#txt_form_background").val()+"',";
 	code += "<br/>&emsp;thanku_html : '"+htmlEncode($("#txt_thanku_html").val())+"',";
