@@ -159,7 +159,7 @@ i.mdi
   overflow-y: scroll;
 }
 
-#dlg_success_code textarea
+#dlg_success_code textarea,#dlg_load_config textarea
 {
    width: 750px;
    height: 300px;

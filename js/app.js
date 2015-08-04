@@ -79,6 +79,29 @@ $(document).ready(function() {
 
 	$("#btn_save_fields").click(function(){ render(); });
 
+	$('#btn_load_config').click(function(){
+		$("#dlg_load_config").modal("show");
+	});
+
+	$("#btn_load_this_config").click(function(){
+		var options = $("#txt_config_data").val();
+		options = JSON.parse(options);
+
+		set_options(options);
+
+		render();
+	});
+
+	$('#btn_save_config').click(function(){
+		
+		var options = get_options();
+
+		var fileText = JSON.stringify(options);
+
+		var blob = new Blob([fileText], {type: "text/plain;charset=utf-8"});
+		saveAs(blob, "leadbox.txt");
+	});	
+
 	render();
 });
 
@@ -123,6 +146,14 @@ function render()
 {
 	$("div[leadbox-form]").html("");
 
+	var options = get_options();
+	options.callback = function(data) { console.log(data); };
+
+	window.lpManager.init(options);
+}
+
+function get_options()
+{
 	var fields = [];
 	$("#tbl_fields tbody tr").each(function(){
 		fields.push({
@@ -166,9 +197,53 @@ function render()
 		fields : fields
 	}
 
-	options.callback = function(data) { console.log(data); };
+	return options;
+}
 
-	window.lpManager.init(options);
+function set_options(options)
+{
+	$("#tbl_fields tbody tr").remove();
+
+	for(var i = 0; i< options.fields.length; i++)
+	{
+		var field = options.fields[i];
+		$("#tbl_fields tbody").append("<tr><td>"+field.label+"</td><td>"+field.name+"</td><td>"+field.value+"</td><td>"+field.type+"</td><td>"+(field.required ? "YES" : "")+"</td></tr>");
+	}
+
+	$("#txt_border_radius").val(options.border_radius);
+	$("#txt_submit_background").val(options.submit.background);
+	$("#txt_submit_color").val(options.submit.text_color);
+
+	$("#txt_input_background").val(options.input.background);
+	$("#txt_input_color").val(options.input.text_color);
+	$("#txt_text_width").val(options.input.max_width);
+
+	$("#txt_text_color").val(options.color);
+	$("#txt_fonts").val(options.google_fonts);
+	$("#txt_form_background").val(options.background);
+	$("#txt_thanku_html").val(options.thanku_html);
+	set_checked("#chk_orientation",options.layout == "vertical");
+	set_checked("#chk_labels",options.show_labels);
+	set_checked("#chk_LTR",options.direction == "ltr");
+
+	set_checked("#chk_mailgun",options.enable_validator);
+	set_checked("#chk_suggestions",options.enable_suggestions);
+	set_checked("#chk_disposables",options.enable_disposables_check);
+
+	$("#txt_mailgun_api_key").val(options.mailgun_key);
+	$("#txt_save_text").val(options.languageOverrides.save);
+
+	$("#ddl_language").html(options.language + " <span class='caret'></span>");
+
+	return options;
+}
+
+function set_checked(selector,checked)
+{
+	if(checked)
+		$(selector).attr("checked");
+	else
+		$(selector).removeAttr("checked");	
 }
 
 function get_code()

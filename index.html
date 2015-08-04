@@ -11,9 +11,7 @@
         <link href="css/bootstrap-colorpicker.min.css" rel="stylesheet">
         <link href="css/app.css" rel="stylesheet">
     </head>
-
     <body>
-
 		<!-- Your site -->
 		<nav class="navbar navbar-default navbar-material-blue-grey">
 		  <div class="container-fluid">
@@ -32,6 +30,10 @@
 		    <div class="collapse navbar-collapse">
 		      <ul class="nav navbar-nav pull-right">
 		        <li>
+		        	<div class="btn-group">
+		        		<button class="btn btn-default btn-material-orange" id="btn_load_config"><i class="mdi mdi-file-file-upload"></i><div class="ripple-wrapper"></div> LOAD</button>
+		        		<button class="btn btn-default btn-material-green" id="btn_save_config"><i class="mdi mdi-file-file-download"></i><div class="ripple-wrapper"></div> SAVE</button>
+		        	</div>
 		        	<div class="btn-group">
 		        		<button class="btn btn-default btn-material-yellow" id="btn_fields"><i class="mdi mdi-action-assignment"></i><div class="ripple-wrapper"></div> EDIT FIELDS</button>
 		        	</div>
@@ -188,7 +190,7 @@
 				  </div>
 				  <div class="modal-body">
 				  	<div class="form-group">
-						<input type="text" class="form-control empty" id="txt_mailgun_api_key" placeholder="pubkey-020a0508df0a2111f0db5af9b6391d51" value="pubkey-02fa55f8df9a2992f9db5af9b6391c50" >
+						<input type="text" class="form-control empty" id="txt_mailgun_api_key" placeholder="e.g. pubkey-XXXa0508df0a2XXXf0db5af9b6391XXX" value="" >
 					</div>
 				  </div>
 				  <div class="modal-footer">
@@ -250,9 +252,17 @@
 				<div class="modal-content">
 				  <div class="modal-header">
 				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				    <h4 class="modal-title">Code</h4>
 				  </div>
 				  <div class="modal-body">
+				  	<h4 class="modal-title">INCLUDES [GOES TO HEADER]</h4>
+				  	<code>
+				  		&lt;script type="text/javascript" src="js/jquery-1.11.0.min.js"&gt;&lt;/script&gt;<br/>
+						&lt;script type="text/javascript" src="http://leadbox.adti.me/mailcheck.js"&gt;&lt;/script&gt;<br/>
+						&lt;script type="text/javascript" src="http://leadbox.adti.me/mailgun_validator.js"&gt;&lt;/script&gt;<br/>
+						&lt;script type="text/javascript" src="http://leadbox.adti.me/leadbox.js"&gt;&lt;/script&gt;
+				  	</code>
+				  	<br/><br/>
+				    <h4 class="modal-title">CODE [GOES AT THE CLOSING BODY TAG]</h4>
 				  <code id="txt_code">
 				  	
 				  </code>
@@ -303,13 +313,32 @@
 				</div>
 			</div>
 		</div>
+
+		<div id="dlg_load_config" class="modal fade" tabindex="-1">
+			<div class="modal-dialog modal-wide">
+				<div class="modal-content">
+				  <div class="modal-header">
+				  	<h4 class="modal-title">Place Setting Data Here</h4>
+				    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				  </div>
+				  <div class="modal-body">
+				  <textarea id="txt_config_data"></textarea>
+				  </div>
+				  <div class="modal-footer">
+				    <button id="btn_load_this_config" class="btn btn-primary" data-dismiss="modal">Load</button>
+				  </div>
+				</div>
+			</div>
+		</div>
+
         <!-- site end -->
 
-   	<script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/ripples.min.js"></script>
-    <script src="js/material.min.js"></script>
-    <script src="js/bootstrap-colorpicker.min.js"></script>
+   	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/ripples.min.js"></script>
+    <script type="text/javascript" src="js/material.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-colorpicker.min.js"></script>
+    <script type="text/javascript" src="js/FileSaver.min.js"></script>
 
 	<script type="text/javascript" src="mailcheck.js"></script>
 	<script type="text/javascript" src="mailgun_validator.js"></script>
