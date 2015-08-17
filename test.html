@@ -18,7 +18,11 @@
 		<div style="width:400px;height:300px;padding:10px; border:solid 1 pix red; margin:10px;">
 			<div leadbox-form></div>
 		</div>
+		<div style="width:400px;height:300px;padding:10px; border:solid 1 pix red; margin:10px;">
+			<div leadbox-form></div>
+		</div>		
         <!-- site end -->
+
 
    	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript" src="mailcheck.js"></script>
@@ -27,13 +31,9 @@
 
 <script type="text/javascript">
 var myFields = [
- {label : 'Name', name : 'name', value : '', type : 'text', required : true},
- {label : 'Name', name : 'name', value : '', type : 'text', required : true},
- {label : 'Name', name : 'name', value : '', type : 'text', required : true},
- {label : 'Name', name : 'name', value : '', type : 'text', required : true},
- {label : 'Phone', name : 'phone', value : '', type : 'phone', required : false},
- {label : 'Email Address', name : 'email', value : '', type : 'email', required : true},
- {label : 'I agree to receive updates', name : 'i_agree', value : 'on', type : 'checkbox', required : true}
+ {label : 'name', name : 'name', value : '', type : 'text', required : true},
+ {label : 'phone', name : 'phone', value : '', type : 'phone', required : true},
+ {label : 'email', name : 'email', value : '', type : 'email', required : false}
 ];
 var options = {
  submit : {
@@ -43,12 +43,13 @@ var options = {
  input : {
   background : '#f4f2f2',
   text_color : '#000000',
-  max_width : '170'
+  max_width : '250'
  },
+ color : "#000000",
  google_fonts : "'Droid Sans', 'Droid Serif'",
- background : 'rgba(245,93,93,0.24)',
- thanku_html : 'thank you',
- layout : 'horizontal',
+ background : 'white',
+ thanku_html : '',
+ layout : 'vertical',
  border_radius : 4,
  show_labels : true,
  language : 'english',
@@ -56,15 +57,16 @@ var options = {
  enable_validator : false,
  enable_suggestions : true,
  enable_disposables_check : true,
- mailgun_key : 'pubkey-02fa55f8df9a2992f9db5af9b6391c50',
+ mailgun_key : '',
  languageOverrides : {save : 'Save'},
  fields : myFields
 }
 options.callback = function(data) {
 try {
+var redir = function() { document.location.href = ''; };
 
-jQuery('div.thanku-pop').css('display','inline-block');
-jQuery('form.lp-container .lp-row').css('visibility','hidden');
+var _cmq = window._cmq || [];
+_cmq.push(['leadForm', jQuery('form.lp-container')[0],redir,500]);
 }
 catch(ex)
 {}

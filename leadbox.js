@@ -14,11 +14,11 @@
 
 			this.options = options;
 
+			this.options.forms = {};
+
 			this.doLanguageOverrides();
 
 			this.loadFonts();
-
-			this.enhanceFields();
 
 			if(this.options.enable_disposables_check)
 				this.loadDisposableEmailDomains();
@@ -28,7 +28,18 @@
 			{
 				var host = jQuery(this);
 
-				self.render(host);
+				if(!host.attr('id') || host.attr('id').length == 0)
+					host.attr('id','frm_'+self.id_gen++);
+
+				hostId = host.attr('id');
+
+				self.options.forms[hostId] = [];
+
+				var frm = self.options.forms[hostId];
+
+				self.enhanceFields(frm,hostId);
+
+				self.render(host,frm);
 
 				self.resizeObjects(host);
 
@@ -73,45 +84,49 @@
 		},
 
 		/* give fields ids and type related attributes */
-		enhanceFields : function() 
+		enhanceFields : function(frm,hostId) 
 		{
 			//adding the submit button as something that is also required to pass (a click would do)
-			this.options.fields.push({
+			frm.push({
 				passes : 0,
 				status : 'not_ready',
-				id : 'submit_button',
+				id : hostId+'_submit_button',
 				type : 'submit'
 			});
 
 			for(var i=0; i < this.options.fields.length-1; i++)
 			{
 				var field = this.options.fields[i];
-				field.id = 'field_' + this.id_gen++;
-				this.resetField(field.id);
-				if(field.type == 'hidden')
-					field.status = 'ready';
+				var formField = jQuery.extend(true, { id:hostId +'_fld_' + this.id_gen++,passes:0,status:'not_ready' }, field)
+				frm.push(formField);
+				if(formField.type == 'hidden')
+					formField.status = 'ready';
+
 			}
 		},
 
 		findField : function(id)
 		{
-			for(var i=0; i<this.options.fields.length; i++)
-				if(id == this.options.fields[i].id)
-					return this.options.fields[i];
+			var formId = this.getHostId(id);
+			var form = this.options.forms[formId];
+			for(var i=0; i<form.length; i++)
+				if(id == form[i].id)
+					return form[i];
 			return null;
 		},
 
 		resetField : function(fieldId)
 		{
 			var field = this.findField(fieldId);
+			var hostId = this.getHostId(fieldId);
 			field.passes = 0;
 			field.status = 'not_ready';
-			if(field.id != 'submit_button' && field.type != 'hidden')
+			if(field.id != hostId+'_submit_button' && field.type != 'hidden')
 			{
 				this.clearNotification(field.id);
 				//if we reset a field, submit should be clicked again.
 
-				this.resetField('submit_button');
+				this.resetField(hostId + '_submit_button');
 			}
 		},
 
@@ -121,9 +136,15 @@
 			jQuery("#"+fieldId).removeClass('lp-error lp-pass lp-suggest');
 		},
 
+		getHostId : function(fieldId)
+		{
+			return $("#"+fieldId).closest("div[leadbox-form]").attr('id');
+		},
+
 		fieldPass : function(fieldId)
 		{
 			var field = this.findField(fieldId);
+			var hostId = this.getHostId(fieldId);
 			if(field.status == 'failed')
 				return;
 			field.passes++;
@@ -131,9 +152,9 @@
 				return;
 
 			field.status = 'ready';
-			if(field.id != 'submit_button')
+			if(field.id != hostId + '_submit_button')
 				this.showFieldPass(fieldId);
-			this.doSubmit();
+			this.doSubmit(hostId);
 		},
 
 		showFieldPass : function(fieldId)
@@ -161,16 +182,17 @@
 		},
 
 		/* render fields and handle styles */
-		render : function(host)
+		render : function(host,form)
 		{
+			var hostId = host.attr('id');
 			//render fields
 			var formText = "<form class='lp-container "+this.options.layout+"' style='direction:"+this.options.direction+"'>";
 			formText += "<div class='thanku-pop'>"+this.options.thanku_html+"</div>";
-			for(var i=0; i < this.options.fields.length; i++)
+			for(var i=0; i < form.length; i++)
 			{
-				var field = this.options.fields[i];
+				var field = form[i];
 				
-				if(field.id == 'submit_button')
+				if(field.id == hostId+'_submit_button')
 					continue;
 				
 				switch(field.type)
@@ -190,7 +212,7 @@
 				}
 			}
 
-			formText += "<div class='lp-row'><button class='lp-object'>"+this.lang('save')+"</button></div></form>";
+			formText += "<div class='lp-row'><button id='"+hostId+"_submit_button' class='lp-object'>"+this.lang('save')+"</button></div></form>";
 
 			//render styles
 			host.append("<style>\n"+
@@ -213,8 +235,8 @@
 				 ".lp-input.lp-error { background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wcHCxsmdyVBdQAAAB1pVFh0Q29tbWVudAAAAAAAQ3JlYXRlZCB3aXRoIEdJTVBkLmUHAAAAf0lEQVQ4y2P08/PzYWBgmMPAwCDOQBl4ycDAkM5EJcMYoGbMZKKSYXBDmYhRtWnTJsZNmzYxEqOWiYHKYNRAygGjn5/f/6Hv5QFNhzQJw8fUNjCLmoYyUmqAn59fPQMDQwOMz0ypgTdv3jyorq7OwMDA4EAVA9ENZaZW2MEMBQBZ4SD8U6/0DAAAAABJRU5ErkJggg==');}\n"
 				 ) +
 				"button.lp-object { margin-top:10px;cursor:pointer; color:"+this.options.submit.text_color+";background-color:"+this.options.submit.background+";}\n"+
-				"button.lp-object:active { background-color:"+this.ColorLuminance(this.options.submit.background,-0.05)+";}\n"+
-				"button.lp-object.waiting { background-color:"+this.ColorLuminance(this.options.submit.background,-0.2)+";}\n"+
+				"button.lp-object:active { background-color:"+this.colorLuminance(this.options.submit.background,-0.05)+";}\n"+
+				"button.lp-object.waiting { background-color:"+this.colorLuminance(this.options.submit.background,-0.2)+";}\n"+
 				"</style>");
 
 			host.append(formText);
@@ -373,7 +395,7 @@
 			}
 		},
 
-		//saveDetails is passing the submit button. if all else passed, the lead iwll finally be sent by doSubmit
+		//saveDetails is passing the submit button. if all else passed, the lead will finally be sent by doSubmit
 		saveDetails : function(e)
 		{
 			e.preventDefault();
@@ -383,32 +405,37 @@
 	
 			lpManager.showSaving();
 
-			for(var i =0; i<lpManager.options.fields.length;i++)
+			var hostId = lpManager.getHostId($(e.target).attr("id"));
+
+			var form = lpManager.options.forms[hostId];
+
+			for(var i =0; i<form.length;i++)
 			{
-				var field = lpManager.options.fields[i];
-				if(field.status == 'not_ready' && field.id != 'submit_button' && field.type != 'hidden')
+				var field = form[i];
+				if(field.status == 'not_ready' && field.id != hostId+'_submit_button' && field.type != 'hidden')
 					lpManager.doValidations(field.id);
 			}
 
-			lpManager.fieldPass('submit_button');
+			lpManager.fieldPass(hostId + '_submit_button');
 
 			return false;
 		},
 
-		doSubmit : function()
+		doSubmit : function(hostId)
 		{
-			for(var i =0; i < this.options.fields.length; i++)
-				if(this.options.fields[i].status != 'ready')
+			var form = this.options.forms[hostId];
+			for(var i =0; i < form.length; i++)
+				if(form[i].status != 'ready')
 				{
 					lpManager.releaseSaving();
 					return;
 				}
 
 			var data = {};
-			for(var i =0; i<lpManager.options.fields.length;i++)
+			for(var i =0; i<form.length;i++)
 			{
-				var field = lpManager.options.fields[i];
-				if(field.id == 'submit_button')
+				var field = form[i];
+				if(field.id == hostId+'_submit_button')
 					continue;
 				else if(field.type == 'checkbox')
 					data[field.name] = $("#"+field.id).is(":checked");
@@ -418,9 +445,9 @@
 
 			lpManager.options.callback(data);
 
-			for(var i=0;i<this.options.fields.length; i++)
-				if(this.options.fields[i].type != 'hidden')
-					this.options.fields[i].status = 'not_ready';
+			for(var i=0;i<form.length; i++)
+				if(form[i].type != 'hidden')
+					form[i].status = 'not_ready';
 
 			lpManager.releaseSaving();
 
@@ -442,7 +469,7 @@
 			jQuery("button.lp-object").removeClass("waiting");
 		},
 
-		ColorLuminance : function(hex, lum) 
+		colorLuminance : function(hex, lum) 
 		{
 			// validate hex string
 			hex = String(hex).replace(/[^0-9a-f]/gi, '');
