@@ -108,7 +108,7 @@ $(document).ready(function() {
 function enable_auto_refresh()
 {
 	//checkboxes and texts
-	$("#chk_orientation, #chk_labels, #txt_text_width, #txt_border_radius, #chk_LTR, #txt_fonts" +
+	$("#chk_orientation, #chk_labels, #txt_text_width, #txt_border_radius, #chk_LTR, #chk_OppositeSubmit, #txt_fonts" +
 		"#ddl_language, #txt_save_text, #chk_mailgun, #chk_suggestions, #chk_disposables").change(function(){
 		if($("#btn_auto_refresh").hasClass("active"))
 			render();
@@ -172,6 +172,7 @@ function get_options()
 		submit : {
 			background : $("#txt_submit_background").val(),
 			text_color : $("#txt_submit_color").val(),
+			oppositeDirection : is_checked("chk_OppositeSubmit")
 		},
 		input : {
 			background : $("#txt_input_background").val(),
@@ -225,6 +226,7 @@ function set_options(options)
 	set_checked("#chk_orientation",options.layout == "vertical");
 	set_checked("#chk_labels",options.show_labels);
 	set_checked("#chk_LTR",options.direction == "ltr");
+	set_checked("#chk_OppositeSubmit",options.submit.oppositeDirection);
 
 	set_checked("#chk_mailgun",options.enable_validator);
 	set_checked("#chk_suggestions",options.enable_suggestions);
@@ -271,7 +273,8 @@ function get_code()
 	code += "<br/>var options = {";
 	code += "<br/>&emsp;submit : {";
 	code += "<br/>&emsp;&emsp;background : '"+$("#txt_submit_background").val()+"',";
-	code += "<br/>&emsp;&emsp;text_color : '"+$("#txt_submit_color").val()+"'";
+	code += "<br/>&emsp;&emsp;text_color : '"+$("#txt_submit_color").val()+"',";
+	code += "<br/>&emsp;&emsp;oppositeDirection : '"+$("#chk_OppositeSubmit").val()+"'";
 	code += "<br/>&emsp;},";
 	code += "<br/>&emsp;input : {";
 	code += "<br/>&emsp;&emsp;background : '"+$("#txt_input_background").val()+"',";

@@ -15,12 +15,12 @@
     <body>
 
 		<!-- Your site -->
-		<div style="width:400px;height:300px;padding:10px; border:solid 1 pix red; margin:10px;">
+		<div style="width:100%;height:300px;padding:10px; border:solid 1 pix red; margin:10px;">
 			<div leadbox-form></div>
 		</div>
-		<div style="width:400px;height:300px;padding:10px; border:solid 1 pix red; margin:10px;">
+		<div style="width:100%;height:300px;padding:10px; border:solid 1 pix red; margin:10px;">
 			<div leadbox-form></div>
-		</div>		
+		</div>
         <!-- site end -->
 
 
@@ -31,9 +31,9 @@
 
 <script type="text/javascript">
 var myFields = [
- {label : 'name', name : 'name', value : '', type : 'text', required : true},
- {label : 'phone', name : 'phone', value : '', type : 'phone', required : true},
- {label : 'email', name : 'email', value : '', type : 'email', required : false}
+ {label : 'aaa', name : 'aaa', value : '', type : 'text', required : true},
+ {label : 'bbb', name : 'bbb', value : '', type : 'text', required : true},
+ {label : 'ccc', name : 'ccc', value : '', type : 'text', required : true}
 ];
 var options = {
  submit : {
@@ -49,14 +49,14 @@ var options = {
  google_fonts : "'Droid Sans', 'Droid Serif'",
  background : 'white',
  thanku_html : '',
- layout : 'vertical',
+ layout : 'horizontal',
  border_radius : 4,
  show_labels : true,
  language : 'english',
  direction : 'ltr',
  enable_validator : false,
  enable_suggestions : true,
- enable_disposables_check : true,
+ enable_disposables_check : false,
  mailgun_key : '',
  languageOverrides : {save : 'Save'},
  fields : myFields

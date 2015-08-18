@@ -55,7 +55,7 @@
 
 		<div class="container-fluid main">
 			<div class="row">
-				<div class="col col-xs-3 menu">
+				<div class="col col-xs-4 menu">
 					<div class="panel panel-info">
 						<div class="panel-heading">
 						    <h3 class="panel-title" data-toggle="collapse" data-target="#pnl_layout">Layout</h3>
@@ -87,6 +87,9 @@
 							</div>
 							<div class="togglebutton">
 								<label>Direction Left to Right <input id="chk_LTR" type="checkbox" checked=""></label>
+			 				</div>
+							<div class="togglebutton">
+								<label>Submit On Opposite Direction <input id="chk_OppositeSubmit" type="checkbox"></label>
 			 				</div>
 	      				</div>
 					</div>
@@ -168,12 +171,12 @@
 								<label>Suggestions <input id="chk_suggestions" type="checkbox" checked=""></label>
 			 				</div>
 							<div class="togglebutton">
-								<label>Disposable Mail <input id="chk_disposables" type="checkbox" checked=""></label>
+								<label>Disposable Mail <input id="chk_disposables" type="checkbox"></label>
 			 				</div>
 	      				</div>
 					</div>
 				</div>
-				<div class="pages col-xs-8">
+				<div class="pages col-xs-7">
 					<div class="well page active" id="about" style="display: block;">
 						<h1 class="header">LeadBox Preview</h1>
 						<div leadbox-form></div>
@@ -256,10 +259,10 @@
 				  <div class="modal-body">
 				  	<h4 class="modal-title">INCLUDES [GOES TO HEADER]</h4>
 				  	<code>
-				  		&lt;script type="text/javascript" src="js/jquery-1.11.0.min.js"&gt;&lt;/script&gt;<br/>
-						&lt;script type="text/javascript" src="http://leadbox.adti.me/mailcheck.js"&gt;&lt;/script&gt;<br/>
-						&lt;script type="text/javascript" src="http://leadbox.adti.me/mailgun_validator.js"&gt;&lt;/script&gt;<br/>
-						&lt;script type="text/javascript" src="http://leadbox.adti.me/leadbox.js"&gt;&lt;/script&gt;
+				  		&lt;script type="text/javascript" src="http://leadbox.adti.me/release/jquery-1.11.0.min.js"&gt;&lt;/script&gt;<br/>
+						&lt;script type="text/javascript" src="http://leadbox.adti.me/release/mailcheck.js"&gt;&lt;/script&gt;<br/>
+						&lt;script type="text/javascript" src="http://leadbox.adti.me/release/mailgun_validator.js"&gt;&lt;/script&gt;<br/>
+						&lt;script type="text/javascript" src="http://leadbox.adti.me/release/leadbox-1.0.min.js"&gt;&lt;/script&gt;
 				  	</code>
 				  	<br/><br/>
 				    <h4 class="modal-title">CODE [GOES AT THE CLOSING BODY TAG]</h4>
