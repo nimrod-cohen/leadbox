@@ -6,9 +6,9 @@
 <script type="text/javascript" src="js/bootstrap-colorpicker.min.js"></script>
 <script type="text/javascript" src="js/FileSaver.min.js"></script>
 
-<script type="text/javascript" src="mailcheck.js"></script>
-<script type="text/javascript" src="mailgun_validator.js"></script>
-<script type="text/javascript" src="leadbox.js" charset="UTF-8"></script>
+<script type="text/javascript" src="release/mailcheck.js"></script>
+<script type="text/javascript" src="release/mailgun_validator.js"></script>
+<script type="text/javascript" src="js/leadbox.js" charset="UTF-8"></script>
 
 <script type="text/javascript" src="js/app.js"></script>
 
