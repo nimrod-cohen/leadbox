@@ -431,7 +431,7 @@ function get_javascript_code_part()
 	if(is_checked("chk_adtime"))
 	{
 		code += "<br/>var _cmq = window._cmq || [];";
-		code += "<br/>_cmq.push(['leadForm', jQuery('form.lp-container')[0]"+(is_redir ? ",redir,500" : "")+"]);";
+		code += "<br/>_cmq.push(['lead', data"+(is_redir ? ",redir,500" : "")+"]);";
 	}
 
 	if(!is_redir)
