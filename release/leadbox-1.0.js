@@ -287,9 +287,9 @@
 			var buttonWidth = Math.min(250,inputWidth);
 			buttonWidth = Math.max(100,buttonWidth);
 
-			jQuery(".lp-input:not([type='checkbox'])").width(inputWidth);
+			jQuery("#"+host.attr("id")+" .lp-input:not([type='checkbox'])").width(inputWidth);
 
-			jQuery(".lp-container button").width(buttonWidth);
+			jQuery("#"+host.attr("id")+" .lp-container button").width(buttonWidth);
 
 			//if we support opposite side submit button
 			var self = this;

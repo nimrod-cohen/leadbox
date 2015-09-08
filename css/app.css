@@ -168,14 +168,28 @@ i.mdi
 
 button.btn-move-field
 {
-  margin: 0;
   padding: 0 !important;
-  margin-left: 4px;
 }
 
 button.btn-move-field i.mdi
 {
-    margin: 0;
-    margin-left: 4px;
     padding:0 4px;
+}
+
+a.settings-menu, a.settings-menu:active, a.settings-menu:focus, a.settings-menu:hover, .nav .open>a.settings-menu
+{
+    color:white;
+    background-color: transparent;
+}
+
+a.navbar-brand
+{
+    border-right: solid 1px #bbbbbb;
+    margin-right:10px;
+}
+
+td button.btn-xs
+{
+    margin:0 !important;
+    margin-left: 4px !important;
 }
