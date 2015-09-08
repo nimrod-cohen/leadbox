@@ -414,7 +414,7 @@ function get_javascript_code_part()
 	code += "<br/>&emsp;enable_disposables_check : "+is_checked("chk_disposables")+",";
 	code += "<br/>&emsp;mailgun_key : '"+$("#txt_mailgun_api_key").val()+"',";
 	code += "<br/>&emsp;languageOverrides : {";
-	code += "save : '"+$("#txt_save_text").val()+"'";
+	code += "save : '"+$("#txt_save_text").val()+"',";
 	code += "tag_line : '"+$("#txt_tag_line").val()+"'";
 	code += "},";
 	code += "<br/>&emsp;fields : myFields";
@@ -447,7 +447,7 @@ function get_javascript_code_part()
 	code += "<br/>}<br/> catch(ex)<br/>{}<br/>};";
 	code += "<br/>window.lpManager.init(options);";
 
-	code += "$('input, textarea').placeholder();";
+	code += "<br/>$('input, textarea').placeholder();";
 
 	return code;
 }
