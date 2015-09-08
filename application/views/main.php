@@ -211,10 +211,15 @@
 					&lt;script type="text/javascript" src="http://leadbox.adti.me/release/jquery-1.11.0.min.js"&gt;&lt;/script&gt;<br/>
 					&lt;script type="text/javascript" src="http://leadbox.adti.me/release/mailcheck.js"&gt;&lt;/script&gt;<br/>
 					&lt;script type="text/javascript" src="http://leadbox.adti.me/release/mailgun_validator.js"&gt;&lt;/script&gt;<br/>
-					&lt;script type="text/javascript" src="http://leadbox.adti.me/release/leadbox-1.0.min.js"&gt;&lt;/script&gt;
+					&lt;script type="text/javascript" src="http://leadbox.adti.me/release/leadbox-1.1.min.js"&gt;&lt;/script&gt;<br/>
+					&lt;script type="text/javascript" src="http://leadbox.adti.me/release/jquery.placeholder.min.js"&gt;&lt;/script&gt;
 				</code>
 				<br/><br/>
 				<h4 class="modal-title">CODE [GOES AT THE CLOSING BODY TAG]</h4>
+				If you have hosted your file with us, add this script reference:<br/>
+				<b>Remember to replace {YOUR_SAVED_NAME} with the hosted script name.</b><br/>
+				<code>&lt;script type="text/javascript" src="http://leadbox.adti.me/c/<?php echo $_SESSION["auth"]->folder ?>/{YOUR_SAVED_NAME}.js"&gt;&lt;/script&gt;</code><br/><br/>
+				Otherwise, Add this code:<br/>
 				<code id="txt_code">
 
 				</code>

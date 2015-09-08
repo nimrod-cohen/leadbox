@@ -447,6 +447,8 @@ function get_javascript_code_part()
 	code += "<br/>}<br/> catch(ex)<br/>{}<br/>};";
 	code += "<br/>window.lpManager.init(options);";
 
+	code += "$('input, textarea').placeholder();";
+
 	return code;
 }
 
