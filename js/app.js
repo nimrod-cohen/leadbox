@@ -426,13 +426,13 @@ function get_javascript_code_part()
 	if(is_redir)
 		code += "<br/>var redir = function() { document.location.href = '"+ $("#txt_redirect_url").val() + "'; };";
 
-	code += "<br/>"+$("#txt_success_code").val();
-
 	if(is_checked("chk_adtime"))
 	{
 		code += "<br/>var _cmq = window._cmq || [];";
 		code += "<br/>_cmq.push(['lead', data"+(is_redir ? ",redir,500" : "")+"]);";
 	}
+
+	code += "<br/>"+$("#txt_success_code").val();
 
 	if(!is_redir)
 	{

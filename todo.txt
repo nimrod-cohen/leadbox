@@ -1,8 +1,11 @@
 1. add sms verification & if phone exists using nexmo or twilio
 14. connect with auto responder
 17. compress with (if available): https://developers.google.com/closure/compiler/docs/api-ref
+18. release files should be on a separate subdomain cached on cloudflare and purged individually after each save.
 
 BUGS:
 1.  oppositeDirection : 'on' ==>  oppositeDirection : true
 2. why show labels true although selected as false
 3. fix font issues at soda stream
+4. onsuccess code is not saved in options file
+5. title font color should be editable.
