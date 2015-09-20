@@ -74,6 +74,10 @@ $(document).ready(function() {
 	{
 		$("#txt_redirect_url").css("display", $(this).is(":checked") ? "" : "none");
 		$("#txt_thanku_html").css("display", $(this).is(":checked") ? "none" : "");
+		if($(this).is(":checked"))
+			$("#txt_thanku_html").val("");
+		else
+			$("#txt_redirect_url").val("");
 	});
 
 	//changing dropdown label text after selection
@@ -267,7 +271,7 @@ function get_options()
 		input : {
 			background : $("#txt_input_background").val(),
 			text_color : $("#txt_input_color").val(),
-			max_width : $("#txt_text_width").val(),
+			max_width : $("#txt_text_width").val()
 		},
 		color : $("#txt_text_color").val(),
 		google_fonts : $("#txt_fonts").val(),
@@ -286,6 +290,8 @@ function get_options()
 			save : $("#txt_save_text").val(),
 			tag_line : $("#txt_tag_line").val()
 		},
+		success_code : $("#txt_success_code").val(),
+		redirect_url : $("#txt_redirect_url").val(),
 		fields : fields
 	}
 
@@ -341,6 +347,9 @@ function set_options(options)
 	$("#txt_fonts").val(options.google_fonts);
 	$("#txt_form_background").val(options.background);
 	$("#txt_thanku_html").val(options.thanku_html);
+	$("#txt_redirect_url").val(options.redirect_url);
+	set_checked("#chk_redirect",options.redirect_url.length>0);
+	$("#chk_redirect").trigger("change");
 	set_checked("#chk_orientation",options.layout == "vertical");
 	set_checked("#chk_labels",options.show_labels);
 	set_checked("#chk_LTR",options.direction == "ltr");
@@ -353,6 +362,8 @@ function set_options(options)
 	$("#txt_mailgun_api_key").val(options.mailgun_key);
 	$("#txt_save_text").val(options.languageOverrides.save);
 	$("#txt_tag_line").val(options.languageOverrides.tag_line);
+
+	$("#txt_success_code").val(options.success_code);
 
 	$("#ddl_language").html(options.language + " <span class='caret'></span>");
 
