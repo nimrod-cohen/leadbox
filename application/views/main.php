@@ -103,7 +103,7 @@
 						</div>
 						<label for="txt_tag_line" class="col-xs-12 control-label">Tag Line</label>
 						<div class="input-group col-xs-12">
-							<input id="txt_tag_line" type="text" class="form-control" placeholder="" value="" />
+							<textarea id="txt_tag_line" style="width:100%" rows="4"></textarea>
 						</div>
 					</div>
 				</div>
@@ -211,7 +211,7 @@
 					&lt;script type="text/javascript" src="http://leadbox.adti.me/release/jquery-1.11.0.min.js"&gt;&lt;/script&gt;<br/>
 					&lt;script type="text/javascript" src="http://leadbox.adti.me/release/mailcheck.js"&gt;&lt;/script&gt;<br/>
 					&lt;script type="text/javascript" src="http://leadbox.adti.me/release/mailgun_validator.js"&gt;&lt;/script&gt;<br/>
-					&lt;script type="text/javascript" src="http://leadbox.adti.me/release/leadbox-1.1.min.js"&gt;&lt;/script&gt;<br/>
+					&lt;script type="text/javascript" src="http://leadbox.adti.me/release/leadbox-<?php echo LEADBOX_VERSION; ?>.min.js"&gt;&lt;/script&gt;<br/>
 					&lt;script type="text/javascript" src="http://leadbox.adti.me/release/jquery.placeholder.min.js"&gt;&lt;/script&gt;
 				</code>
 				<br/><br/>

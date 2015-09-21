@@ -288,7 +288,7 @@ function get_options()
 		mailgun_key : $("#txt_mailgun_api_key").val(),
 		languageOverrides : {
 			save : $("#txt_save_text").val(),
-			tag_line : $("#txt_tag_line").val()
+			tag_line : $("<div/>").text($("#txt_tag_line").val().replace(/(?:\r\n|\r|\n)/g, ' ')).html()
 		},
 		success_code : $("#txt_success_code").val(),
 		redirect_url : $("#txt_redirect_url").val(),
@@ -361,7 +361,7 @@ function set_options(options)
 
 	$("#txt_mailgun_api_key").val(options.mailgun_key);
 	$("#txt_save_text").val(options.languageOverrides.save);
-	$("#txt_tag_line").val(options.languageOverrides.tag_line);
+	$("#txt_tag_line").html($('<div/>').html(options.languageOverrides.tag_line).text());
 
 	$("#txt_success_code").val(options.success_code);
 
@@ -404,7 +404,7 @@ function get_javascript_code_part()
 	code += "<br/>&emsp;submit : {";
 	code += "<br/>&emsp;&emsp;background : '"+$("#txt_submit_background").val()+"',";
 	code += "<br/>&emsp;&emsp;text_color : '"+$("#txt_submit_color").val()+"',";
-	code += "<br/>&emsp;&emsp;oppositeDirection : '"+is_checked("chk_oppositeSubmit")+"'";
+	code += "<br/>&emsp;&emsp;oppositeDirection : "+is_checked("chk_oppositeSubmit");
 	code += "<br/>&emsp;},";
 	code += "<br/>&emsp;input : {";
 	code += "<br/>&emsp;&emsp;background : '"+$("#txt_input_background").val()+"',";
@@ -426,7 +426,7 @@ function get_javascript_code_part()
 	code += "<br/>&emsp;mailgun_key : '"+$("#txt_mailgun_api_key").val()+"',";
 	code += "<br/>&emsp;languageOverrides : {";
 	code += "save : '"+$("#txt_save_text").val()+"',";
-	code += "tag_line : '"+$("#txt_tag_line").val()+"'";
+	code += "tag_line : '"+$("<div/>").text($("#txt_tag_line").val().replace(/(?:\r\n|\r|\n)/g, ' ')).html()+"'";
 	code += "},";
 	code += "<br/>&emsp;fields : myFields";
 	code += "<br/>}";
